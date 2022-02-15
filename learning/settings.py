@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-==75ebquahrhb74%%)16ie3vr68y3ii7#21hljz7%pshzeovav'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -148,8 +148,11 @@ if os.environ['HOME'] == '/app':
     # Honor the 'X-Forwarded-Proto' header for request.is_secure().
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    # Allow all host headers.
-    ALLOWED_HOSTS = ['*']
+    # Allow only Heroku to host the project
+    ALLOWED_HOSTS = ['plutors.herokuapp.com']
+
+    # close debug messages
+    DEBUG = False
 
     # Static asset configuration
     PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
