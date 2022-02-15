@@ -8,3 +8,4 @@ sqlparse==0.4.2
 static3==0.7.0
 tzdata==2021.5
 psycopg==3.0.8
+psycopg2==2.9.3
