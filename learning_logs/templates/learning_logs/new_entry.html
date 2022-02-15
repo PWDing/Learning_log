@@ -10,7 +10,7 @@
     <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
   </p>
 
-  <form action="{% url 'learning_logs:new_topic' %}" method="post" class="form">
+  <form action="{% url 'learning_logs:new_entry' %}" method="post" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
 
