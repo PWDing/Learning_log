@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -29,7 +29,7 @@ def check_topic_owner(request, topic: Topic) -> bool:
 @login_required
 def topic(request, topic_id):
     """展示一个单独的主题以及所有在该主题下的文章"""
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     # 确保主题属于当前用户
     if not check_topic_owner(request, topic):
         raise Http404
@@ -58,7 +58,7 @@ def new_topic(request):
 @login_required
 def new_entry(request, topic_id):
     """添加一篇新文章"""
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     if not check_topic_owner(request, topic):
         raise Http404
 
@@ -78,7 +78,7 @@ def new_entry(request, topic_id):
 @login_required
 def edit_entry(request, entry_id):
     """修改存在的文章"""
-    entry = Entry.objects.get(id=entry_id)
+    entry = Topic.objects.get(Entry, id=entry_id)
     topic = entry.topic
     if not check_topic_owner(request, topic):
         raise Http404
