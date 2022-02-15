@@ -132,7 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # My settings
 LOGIN_URL = '/users/login/'
-DISABLE_COLLECTSTATIC = 1
 
 # Settings for django-bootstrap3
 BOOTSTRAP3 = {
@@ -140,7 +139,7 @@ BOOTSTRAP3 = {
 }
 
 # Heroku settings
-if os.getcwd() == '/app':
+if os.environ['HOME'] == '/app':
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(default='postgres://localhost')
@@ -154,7 +153,7 @@ if os.getcwd() == '/app':
 
     # Static asset configuration
     PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = os.path.join(PROJECT_DIR, 'staticfiles')
+    STATIC_ROOT = 'staticfiles'
     STATICFILES_DIRS = (
         os.path.join(PROJECT_DIR, 'static'),
     )
